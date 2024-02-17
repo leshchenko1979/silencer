@@ -34,7 +34,8 @@ async def restrict_user(chat: Chat, user: User):
 
     logger.info(
         f"Restricting user {user.username or user.id} "
-        f"in chat {chat.username or chat.id}"
+        f"in chat {chat.username or chat.id}",
+        extra={"action": "restrict_user", "user": user.id, "chat": chat.id},
     )
 
     assert await chat.restrict(

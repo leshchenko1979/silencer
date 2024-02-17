@@ -17,9 +17,11 @@ bot = Bot(token=os.environ["TOKEN"])
 
 
 async def yandex_function_handler(event, context):
-    logger.info(f"Event: {event["body"]}")
+    update = json.loads(event["body"])
 
-    await dp.feed_raw_update(bot, json.loads(event["body"]))
+    logger.info("Incoming update", extra={"update": update})
+
+    await dp.feed_raw_update(bot, update)
 
     logger.debug("Finished successfully")
 
